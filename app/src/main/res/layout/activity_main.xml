@@ -15,7 +15,7 @@
         android:layout_alignParentStart="true"
         android:padding="@dimen/elements_basic_paddings"
         android:background="@color/basic_input"
-        android:hint="@string/input_hint"/>
+        android:hint="@string/input_hint" />
 
     <Spinner
         android:layout_width="@dimen/dropdown_basic_width"
@@ -25,4 +25,16 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@color/basic_input" />
+
+    <TextView
+        android:layout_width="@dimen/input_basic_width"
+        android:layout_height="@dimen/input_basic_height"
+        android:text="@string/text_separator"
+        android:id="@+id/textView"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true"
+
+        android:layout_marginTop="53dp"
+        android:gravity="center"
+        />
 </RelativeLayout>

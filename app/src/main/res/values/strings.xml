@@ -3,6 +3,7 @@
 
     <string name="action_settings">settings</string>
     <string name="input_hint">Введите текст</string>
+    <string name="text_separator">Перевести в</string>
 
 
 </resources>
