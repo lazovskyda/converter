@@ -5,23 +5,24 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-
     <EditText
         android:layout_width="@dimen/input_basic_width"
         android:layout_height="@dimen/input_basic_height"
-        android:id="@+id/editText"
+        android:id="@+id/inputCurrencyNumber"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:padding="@dimen/elements_basic_paddings"
         android:background="@color/basic_input"
-        android:hint="@string/input_hint" />
+        android:hint="@string/input_hint"
+        android:textSize="@dimen/basic_text_size"
+        android:inputType="number"/>
 
     <Spinner
         android:layout_width="@dimen/dropdown_basic_width"
         android:layout_height="@dimen/input_basic_height"
-        android:id="@+id/spinner"
-        android:layout_alignBottom="@+id/editText"
+        android:id="@+id/inputCurrency"
+        android:layout_alignBottom="@+id/inputCurrencyNumber"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@color/basic_input" />
@@ -30,11 +31,30 @@
         android:layout_width="@dimen/input_basic_width"
         android:layout_height="@dimen/input_basic_height"
         android:text="@string/text_separator"
-        android:id="@+id/textView"
-        android:layout_below="@+id/editText"
+        android:id="@+id/textSeparator"
+        android:layout_below="@+id/inputCurrencyNumber"
         android:layout_centerHorizontal="true"
+        android:textSize="@dimen/basic_text_size"
+        android:layout_marginTop="20dp"
+        android:gravity="center" />
 
-        android:layout_marginTop="53dp"
-        android:gravity="center"
-        />
+    <TextView
+        android:layout_width="@dimen/input_basic_width"
+        android:layout_height="@dimen/input_basic_height"
+        android:layout_below="@+id/textSeparator"
+        android:id="@+id/resultCurrencyNumber"
+        android:padding="@dimen/elements_basic_paddings"
+        android:hint="@string/input_hint"
+        android:layout_marginTop="20dp"
+        android:textSize="@dimen/basic_text_size" />
+
+    <Spinner
+        android:layout_width="@dimen/dropdown_basic_width"
+        android:layout_height="@dimen/input_basic_height"
+        android:id="@+id/resultCurrency"
+        android:layout_alignBottom="@+id/resultCurrencyNumber"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="@color/basic_input" />
+
 </RelativeLayout>

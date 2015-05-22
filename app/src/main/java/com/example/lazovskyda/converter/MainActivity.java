@@ -4,14 +4,49 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
+    String currentCurrencyValue = "RUR";
+    String resultCurrencyValue = "USD";
+    String[][] currencyArray = {
+            {"RUR","55","58","1"},
+            {"EUR","0.9","1","0.01724"},
+            {"USD","1","1.054","0.01818"}
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Spinner inputCurrency = (Spinner)findViewById(R.id.inputCurrency);
+        Spinner resultCurrency = (Spinner)findViewById(R.id.resultCurrency);
+
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.currencyList, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        inputCurrency.setAdapter(adapter);
+        if (!currentCurrencyValue.equals(null)) {
+            int spinnerPostion = adapter.getPosition(currentCurrencyValue);
+            inputCurrency.setSelection(spinnerPostion);
+        }
+
+        resultCurrency.setAdapter(adapter);
+        if (!resultCurrencyValue.equals(null)) {
+            int spinnerPostion = adapter.getPosition(resultCurrencyValue);
+            resultCurrency.setSelection(spinnerPostion);
+        }
+
+
+
     }
 
 

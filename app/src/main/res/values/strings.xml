@@ -2,8 +2,11 @@
     <string name="app_name">converter</string>
 
     <string name="action_settings">settings</string>
-    <string name="input_hint">Введите текст</string>
+    <string name="input_hint">Введите значение</string>
     <string name="text_separator">Перевести в</string>
-
-
+    <string-array name="currencyList">
+        <item>USD</item>
+        <item>EUR</item>
+        <item>RUR</item>
+    </string-array>
 </resources>
