@@ -16,7 +16,7 @@
         android:background="@color/basic_input"
         android:hint="@string/input_hint"
         android:textSize="@dimen/basic_text_size"
-        android:inputType="number"/>
+        android:inputType="numberSigned|numberDecimal" />
 
     <Spinner
         android:layout_width="@dimen/dropdown_basic_width"
