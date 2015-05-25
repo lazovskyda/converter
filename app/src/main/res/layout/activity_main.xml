@@ -15,8 +15,8 @@
         android:padding="@dimen/elements_basic_paddings"
         android:background="@color/basic_input"
         android:hint="@string/input_hint"
-        android:textSize="@dimen/basic_text_size"/>
-        <!--android:inputType="number"/>-->
+        android:textSize="@dimen/basic_text_size"
+        android:inputType="number"/>
 
     <Spinner
         android:layout_width="@dimen/dropdown_basic_width"

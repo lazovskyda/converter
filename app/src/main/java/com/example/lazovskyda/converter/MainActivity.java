@@ -64,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 //spinner changing listener
-        inputCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        resultCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             Spinner inputCurrency = (Spinner)findViewById(R.id.inputCurrency);
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
@@ -84,6 +84,28 @@ public class MainActivity extends ActionBarActivity {
             }
 
         });
+        inputCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            Spinner resultCurrency = (Spinner)findViewById(R.id.resultCurrency);
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+//                                Toast toast = Toast.makeText(getApplicationContext(),
+//                        "Пора покормить кота!", Toast.LENGTH_SHORT);
+//
+//                toast.show();
+                result(resultCurrency);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
 
 
 
@@ -179,21 +201,22 @@ public class MainActivity extends ActionBarActivity {
                     try {
                         stringActualRate = inputValue.getText().toString();
                         inputNumber = Double.parseDouble(stringActualRate);
+
+                        //                    justSomeString = inputValue.getText().toString();
+//                    inputNumber = Double.parseDouble(justSomeString);
+                        inputNumber = inputNumber/justSomeDouble;
+
+                        justForTests = String.valueOf(inputNumber);
+                        //justForTests = inputNumber.toString();
+
+                        resultCurrencyNumber.setText(justForTests);
+
                     } catch (NumberFormatException e) {
                         System.err.println("Неверный формат строки!");
                         justSomeString = "Херня";
                         resultCurrencyNumber.setText(justSomeString);
                         inputValue.setText("");
                     }
-
-//                    justSomeString = inputValue.getText().toString();
-//                    inputNumber = Double.parseDouble(justSomeString);
-                    inputNumber = inputNumber/justSomeDouble;
-
-                    justForTests = String.valueOf(inputNumber);
-                    //justForTests = inputNumber.toString();
-
-                    resultCurrencyNumber.setText(justForTests);
                 }
 //        }
     }
