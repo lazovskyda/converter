@@ -2,15 +2,19 @@ package com.example.lazovskyda.converter;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +22,7 @@ public class MainActivity extends ActionBarActivity {
     String currentCurrencyValue = "RUR";
     String resultCurrencyValue = "USD";
     double inputNumber = 0;
+
 
     String[][] currencyArray = {
             {"RUR","55","58","1"},
@@ -30,6 +35,10 @@ public class MainActivity extends ActionBarActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! this is my code
+        EditText inputValue = (EditText)findViewById(R.id.inputCurrencyNumber);
+
 
 
         Spinner inputCurrency = (Spinner)findViewById(R.id.inputCurrency);
@@ -53,6 +62,53 @@ public class MainActivity extends ActionBarActivity {
         }
 
 
+
+//spinner changing listener
+        inputCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            Spinner inputCurrency = (Spinner)findViewById(R.id.inputCurrency);
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // your code here
+//                                Toast toast = Toast.makeText(getApplicationContext(),
+//                        "Пора покормить кота!", Toast.LENGTH_SHORT);
+//
+//                toast.show();
+                result(inputCurrency);
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
+
+
+
+//      instruction for edit text listener
+        inputValue.addTextChangedListener(new TextWatcher(){
+            EditText inputValue = (EditText)findViewById(R.id.inputCurrencyNumber);
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Прописываем то, что надо выполнить после изменения текста
+//                Toast toast = Toast.makeText(getApplicationContext(),
+//                        "Пора покормить кота!", Toast.LENGTH_SHORT);
+//
+//                toast.show();
+                result(inputValue);
+
+
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
 
     }
 
@@ -79,6 +135,13 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!my code
+
+
     public void result(View view){
 
         String justForTests;
@@ -89,8 +152,8 @@ public class MainActivity extends ActionBarActivity {
         String nowInputCurrency;
         String nowResultCurrency;
 
-        switch(view.getId()){
-            case R.id.result:
+//        switch(view.getId()){
+//            case R.id.result:
                 TextView resultCurrencyNumber = (TextView)findViewById(R.id.resultCurrencyNumber);
                 EditText inputValue = (EditText)findViewById(R.id.inputCurrencyNumber);
 
@@ -121,7 +184,6 @@ public class MainActivity extends ActionBarActivity {
                         justSomeString = "Херня";
                         resultCurrencyNumber.setText(justSomeString);
                         inputValue.setText("");
-                        break;
                     }
 
 //                    justSomeString = inputValue.getText().toString();
@@ -133,10 +195,7 @@ public class MainActivity extends ActionBarActivity {
 
                     resultCurrencyNumber.setText(justForTests);
                 }
-
-
-
-        }
+//        }
     }
     public double getRate(String firstCurrency , String secondCurrency){
         int i;
