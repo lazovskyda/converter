@@ -14,9 +14,10 @@ import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
+    private static final String TAG = "MyActivity sring tag";
     String currentCurrencyValue = "RUR";
     String resultCurrencyValue = "USD";
-    int inputNumber = 0;
+    double inputNumber = 0;
 
     String[][] currencyArray = {
             {"RUR","55","58","1"},
@@ -82,47 +83,58 @@ public class MainActivity extends ActionBarActivity {
 
         String justForTests;
         double justSomeDouble;
+        String justSomeString = "0";
 
+        String stringActualRate;
         String nowInputCurrency;
         String nowResultCurrency;
 
         switch(view.getId()){
             case R.id.result:
                 TextView resultCurrencyNumber = (TextView)findViewById(R.id.resultCurrencyNumber);
-                EditText inputText = (EditText)findViewById(R.id.inputCurrencyNumber);
+                EditText inputValue = (EditText)findViewById(R.id.inputCurrencyNumber);
 
 
                 Spinner inputCurrency = (Spinner)findViewById(R.id.inputCurrency);
                 Spinner resultCurrency = (Spinner)findViewById(R.id.resultCurrency);
 
                 nowInputCurrency = inputCurrency.getSelectedItem().toString();
-                nowResultCurrency = inputCurrency.getSelectedItem().toString();
+                nowResultCurrency = resultCurrency.getSelectedItem().toString();
 
 
                 justSomeDouble =  getRate(nowInputCurrency, nowResultCurrency);
 
-                justForTests = String.valueOf(justSomeDouble);
-
-                resultCurrencyNumber.setText(justForTests);
-//
-//                if(nowInputCurrency.contentEquals("RUR")){
-//                    currencyArray
-////                    nowResultCurrency = nowInputCurrency/
-//
-//                    resultCurrencyNumber.setText("12312312");
-//                }
-//                else {
-//                    resultCurrencyNumber.setText("piu-piu");
-//                }
 
 
+                if (inputValue.getText().toString().equals(""))
+                {
+                    justSomeString = "Херня";
+                    resultCurrencyNumber.setText(justSomeString);
+                }
+                else
+                {
+                    try {
+                        stringActualRate = inputValue.getText().toString();
+                        inputNumber = Double.parseDouble(stringActualRate);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Неверный формат строки!");
+                        justSomeString = "Херня";
+                        resultCurrencyNumber.setText(justSomeString);
+                        inputValue.setText("");
+                        break;
+                    }
+
+//                    justSomeString = inputValue.getText().toString();
+//                    inputNumber = Double.parseDouble(justSomeString);
+                    inputNumber = inputNumber/justSomeDouble;
+
+                    justForTests = String.valueOf(inputNumber);
+                    //justForTests = inputNumber.toString();
+
+                    resultCurrencyNumber.setText(justForTests);
+                }
 
 
-//                justForTests = inputText.getText().toString();
-//
-//                text.setText(justForTests);
-
-//                Log.v("piu-piu");
 
         }
     }
@@ -130,30 +142,60 @@ public class MainActivity extends ActionBarActivity {
         int i;
 //        private int j;
         double actualRate = 0;
+        String stringActualRate = "none";
+
+        TextView resultCurrencyNumber = (TextView)findViewById(R.id.resultCurrencyNumber);
+
+        stringActualRate = resultCurrencyNumber.getText().toString();
 
         for(i = 0; i<currencyArray.length; i++){
             if(firstCurrency.equals(currencyArray[i][0])){
 
                 if (secondCurrency.contentEquals("USD")){
-                    actualRate = 111.1;
+                    stringActualRate = currencyArray[i][1];
+
+                    try {
+                        actualRate = Double.parseDouble(stringActualRate);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Неверный формат строки!");
+                    }
                     break;
                 }
 
                 else if (secondCurrency.contentEquals("EUR")){
 //                    actualRate = (float)currencyArray[i][2];
-                    actualRate = 222.2;
+                    stringActualRate = currencyArray[i][2];
+                    try {
+                        actualRate = Double.parseDouble(stringActualRate);
+                    } catch (NumberFormatException e) {
+                        System.err.println("Неверный формат строки!");
+                    }
                     break;
                 }
 
                 else if (secondCurrency.contentEquals("RUR")){
 //                    actualRate = (float)currencyArray[i][3];
-                    actualRate = 333.3;
+                    stringActualRate = currencyArray[i][3];
+                    try {
+                        actualRate = Double.parseDouble(stringActualRate);
+                        System.err.println("Норм");
+                    } catch (NumberFormatException e) {
+                        System.err.println("Неверный формат строки!");
+                    }
                     break;
                 }
 
-            }
-        }
+//                Log.i("Текущая переменная"+stringActualRate);
+                //System.out.println("Текущая переменная "+stringActualRate);
 
+
+
+            }
+//            convertation string value of array to double for calculation
+
+
+        }
+        Log.v(TAG, "justSomeTest"+stringActualRate);
         return actualRate;
     }
 }
